@@ -9,7 +9,7 @@ app = FastAPI()
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Or specify your frontend's URL
+    allow_origins=["*"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -33,7 +33,7 @@ def predict_sentiment(review: str) -> str:
         
         # Predict probabilities
         prediction_proba = model.predict_proba(review_tfidf)
-        predicted_class = prediction_proba.argmax(axis=1)[0]  # Get the class with the highest probability
+        predicted_class = prediction_proba.argmax(axis=1)[0]  
 
         # Map predicted class to sentiment
         return sentiment_mapping.get(predicted_class, "Unknown")
