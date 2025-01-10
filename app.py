@@ -7,11 +7,11 @@ from typing import Dict
 app = FastAPI()
 
 # Add CORS middleware
-app.add_middleware(
+app.add_middleware(  #Ensures the API can handle requests from different origins (e.g., your frontend running on another domain or port).
     CORSMiddleware,
-    allow_origins=["*"],  
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_origins=["*"],  #Allows requests from all origins.
+    allow_credentials=True, #Allows cookies or authentication credentials.
+    allow_methods=["*"], #Permits all HTTP methods
     allow_headers=["*"],
 )
 
