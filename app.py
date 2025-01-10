@@ -7,11 +7,11 @@ from typing import Dict
 app = FastAPI()
 
 # Add CORS middleware
-app.add_middleware(
+app.add_middleware(  #Ensures the API can handle requests from different origins (e.g., your frontend running on another domain or port).
     CORSMiddleware,
-    allow_origins=["*"],  
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_origins=["*"],  #Allows requests from all origins.
+    allow_credentials=True, #Allows cookies or authentication credentials.
+    allow_methods=["*"], #Permits all HTTP methods
     allow_headers=["*"],
 )
 
@@ -49,12 +49,12 @@ async def analyze_sentiment(request: Request):
         review = data.get("review")
         if not review:
             return {"error": "No review text provided"}
-        sentiment = predict_sentiment(review)
+        sentiment = predict_sentiment(review) #the text which is pass from the front - end is passed to this function.
         return {"sentiment": sentiment}
     except Exception as e:
         return {"error": f"Failed to process request: {str(e)}"}
 
-@app.get("/test")
+@app.get("/test")  #This endpoint will be used to test the sentiment analysis model.
 async def test_sentiment():
     review = "The product is excellent and works perfectly!"
     sentiment = predict_sentiment(review)
