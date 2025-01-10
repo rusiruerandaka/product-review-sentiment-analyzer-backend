@@ -49,12 +49,12 @@ async def analyze_sentiment(request: Request):
         review = data.get("review")
         if not review:
             return {"error": "No review text provided"}
-        sentiment = predict_sentiment(review)
+        sentiment = predict_sentiment(review) #the text which is pass from the front - end is passed to this function.
         return {"sentiment": sentiment}
     except Exception as e:
         return {"error": f"Failed to process request: {str(e)}"}
 
-@app.get("/test")
+@app.get("/test")  #This endpoint will be used to test the sentiment analysis model.
 async def test_sentiment():
     review = "The product is excellent and works perfectly!"
     sentiment = predict_sentiment(review)
